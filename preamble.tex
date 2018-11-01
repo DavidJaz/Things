@@ -1,17 +1,25 @@
-\usepackage{fullpage}
+%\usepackage{fullpage}
 \usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{tikz}
 \usepackage{wrapfig} % For inserting graphics
 \usepackage{graphicx} % For inserting graphics
 \usepackage{tikz-cd}
-\usepackage[margin=1in]{geometry} % To shape the margins
+\usepackage[margin=1.4in]{geometry} % To shape the margins
 \usepackage[backend=biber]{biblatex}
+\usepackage[colorlinks,linkcolor=darkblue,citecolor=darkblue,urlcolor=darkblue,breaklinks=true]{hyperref}
+\addbibresource{library.bib} 
+
 \usepackage{tipa} % For \textesh, the shape modality
 \usepackage{mathtools} % for pre-superscripts
+\usepackage[capitalize]{cleveref} % for nice references
+  \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma for cleveref
 
-
-
+\usepackage{graphicx}
+\linespread{1.1}
 
 %%% Mathcal
 \DeclareMathOperator{\Aa}{\mathcal{A}}
@@ -87,7 +95,6 @@
 \DeclareMathOperator{\Map}{\mathsf{Map}}
 \DeclareMathOperator{\Gal}{\mathsf{Gal}}
 \DeclareMathOperator{\colim}{\mathsf{colim}}
-\DeclareMathOperator{\im}{\mathsf{im}}
 
 %%% Operators -- Type Theory
 \DeclareMathOperator{\ev}{\textbf{ev}}
@@ -110,7 +117,6 @@
 \DeclareMathOperator{\inl}{\term{inl}}
 \DeclareMathOperator{\inr}{\term{inr}}
 \DeclareMathOperator{\esh}{\textesh}
-\DeclareMathOperator{\bang}{!}
 
 %%% Categories
 \DeclareMathOperator{\Set}{\textbf{Set}}
@@ -143,7 +149,11 @@
 \newcommand{\term}[1]{\mathsf{{#1}}}
 \newcommand{\ax}[1]{\mathsf{{#1}}}
 \newcommand{\trunc}[1]{\left\lVert#1\right\rVert}       % truncation
+\newcommand{\true}{\mathtt{true}}
+\newcommand{\false}{\mathtt{false}}
 
+
+\newcommand{\rest}[2]{#1\big|_{#2}} %restriction
 
 %%% Commands -- Arrows and Equals
 \newcommand{\xto}[1]{\xrightarrow{#1}}
@@ -194,21 +204,23 @@
 \newtheorem{tentative}{Tentative Definition}
 \newtheorem{principle}{Principle}
 \newtheorem{question}{Question}
-\newtheorem{ex}{Example}
+\newtheorem{ex}[defn]{Example}
 \newtheorem{axiom}{Axiom}
 \newtheorem{exercise}{Exercise}[section]
 \newtheorem{rmk}{Remark}
 \newtheorem*{solution}{Solution}
 
 
-\newtheorem{lemma}{Lemma}
+\newtheorem{lemma}[defn]{Lemma}
 \newtheorem*{lem}{Lemma}
 \newtheorem{notation}{Notation}
 \newtheorem*{claim}{Claim}
 \newtheorem*{fclaim}{False Claim}
 \newtheorem{obs}{Observation}
-\newtheorem{conjecture}[lemma]{Conjecture}
-\newtheorem{thm}[lemma]{Theorem}
-\newtheorem{cor}[lemma]{Corollary}
-\newtheorem{prop}[lemma]{Proposition}
-\newtheorem{con}[lemma]{Construction}
+\newtheorem{conjecture}[defn]{Conjecture}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{con}[defn]{Construction}
+
+\definecolor{darkblue}{rgb}{0,0,0.7} 
