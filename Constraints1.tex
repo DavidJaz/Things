@@ -12,7 +12,7 @@ Our approach has roots in categorical logic, and in particular Lawvere's observa
 
 We work behavior-theoretically; to paraphrase Gump, ``X is as X does''. Given a system for which $B_S$ is its set of possible behaviors, we define a \emph{part} to be a quotient of $B_P$, i.e.\ a surjection $B_S \twoheadrightarrow B_P$ from the behavior type. This surjection describes how a behavior of the entire system determines a behavior of the part, and any behavior of the part \emph{qua} part must extend to the behavior of the whole: for any behavior of my hand, there exists at least one compatible behavior of my whole body. Given a behavior on one part, we can consider all possible extensions to the whole, and subsequently ask how those extensions restrict to behaviors of other parts. In this way one part may constrain another.
 
-To describe the logic of these constraints, we introduce two new logical operators, or ``inter-modalities'', closely related to the classical ``it is possible that'' and ``it is necessary that'' modalities, known as the \emph{alethic} modalities \cite{kripke1963semantical}. Given a constraint $\phi$ on some part $P$, we view it as a predicate on---i.e.\ a subset of---the set $B_P$ of $P$-behaviors. We may ask whether satisfying this predicate is compatible with, or whether it ensures, various behaviors on another part $B_Q$: the constraint $\phi$ is passed in these two ways  from $P$ to $Q$.  To be a bit more explicit, the first new operator is called \emph{is compatible with}, written $\compat{P}{Q}\phi$. This describes the set of behaviors in $B_Q$ for which there exists an extension in $B_S$ that restricts to some behavior satisfying $\phi$. The second is the operator \emph{ensures}, written $\ensure{P}{Q}\phi$. This describes the set of behaviors in $B_Q$ for which all extensions to $B_S$ restrict to some behavior satisfying $\phi$ in $B_P$. Our goal in this paper is to describe the properties of these inter-modalities (``inter'' because they go from one part to another), and to demonstrate their utility with some elementary examples.
+To describe the logic of these constraints, we introduce two new logical operators, or ``inter-modalities'', closely related to the classical ``it is possible that'' and ``it is necessary that'' modalities, known as the \emph{alethic} modalities \cite{kripke1963semantical}. Given a constraint $\phi$ on some part $P$, we view it as a predicate on---i.e.\ a subset of---the set $B_P$ of $P$-behaviors. We may ask whether satisfying this predicate allows, or whether it ensures, various behaviors on another part $B_Q$: the constraint $\phi$ is passed in these two ways  from $P$ to $Q$.  To be a bit more explicit, the first new operator is called \emph{allows}, written $\allows{P}{Q}\phi$. This describes the set of behaviors in $B_Q$ for which there exists an extension in $B_S$ that restricts to some behavior satisfying $\phi$. The second is the operator \emph{ensures}, written $\ensure{P}{Q}\phi$. This describes the set of behaviors in $B_Q$ for which all extensions to $B_S$ restrict to some behavior satisfying $\phi$ in $B_P$. Our goal in this paper is to describe the properties of these inter-modalities (``inter'' because they go from one part to another), and to demonstrate their utility with some elementary examples.
 
 \section{Systems and Their Parts: Behavioral perspective}
 
@@ -259,9 +259,9 @@ Here are some examples of one part determining another; equivalently, these are 
 \end{ex}
 
 
-\section{Constraints, Compatibility, and Ensurance}
+\section{Constraints, Allowance, and Ensurance}
 
-In this section, we introduce our new logical operators, $\compat{}{}$ and $\ensure{}{}$, and prove some basic properties about them. We shall see in \cref{subsec.compat_ensure} that these two operators pass constraints between parts. But first, what is a constraint?
+In this section, we introduce our new logical operators, $\allows{}{}$ and $\ensure{}{}$, and prove some basic properties about them. We shall see in \cref{subsec.compat_ensure} that these two operators pass constraints between parts. But first, what is a constraint?
 
 \subsection{Constraints as predicates}
 We will identify a constraint $\phi$ on a part $P$ with the predicate ``satisfies $\phi$'' on behaviors $B_P$ of $P$. In other words, we have the following definition.
@@ -303,15 +303,15 @@ Recall that for part $P$ of system $S$ we write $s \sim_P s'$ for the relation $
 Thinking again of $P$ as a way to observe behaviors,
 $\Delta^P \exists_P \phi$ is the set of system behaviors $s$ that our observer says plausibly satisfy $\phi$: there is something $P$-equivalent to $s$ that satisfies $\phi$. And $\Delta^P \forall_P \phi$ is the set of system behaviors that our observer can guarantee satisfy $\phi$.
 
-\subsection{The compatibility and ensurance operators}\label{subsec.compat_ensure}
+\subsection{The allowance and ensurance operators}\label{subsec.compat_ensure}
 Now we turn to the question of how constraints on the behavior of some part of the system constrain the behavior of other parts. We discuss two ways to pass constraints between parts.
 
      \begin{defn}
         A constraint $\phi$ on a part $P$ induces a constraint on a part $Q$ in two universal ways:
         \begin{itemize}
-            \item ``Is compatible with $\phi$'':\quad $\compat{P}{Q}\phi := \exists_Q \Delta^P\phi$
+            \item ``Allows $\phi$'':\quad $\allows{P}{Q}\phi := \exists_Q \Delta^P\phi$
                 \begin{align*}
-               \compat{P}{Q} \phi(q) &=  \exists s : B_S.\, (\rest{s}{Q} = q) \wedge \phi(\rest{s}{P})\\
+               \allows{P}{Q} \phi(q) &=  \exists s : B_S.\, (\rest{s}{Q} = q) \wedge \phi(\rest{s}{P})\\
                &= \exists p : B_P.\, \mathfrak{c}(p, q) \meet \phi(p).
                 \end{align*}
             \item ``Ensures $\phi$'':\quad $\ensure{P}{Q}\phi := \forall_Q  \Delta^P\phi$
@@ -322,13 +322,13 @@ Now we turn to the question of how constraints on the behavior of some part of t
         \end{itemize} 
     \end{defn}
     
-    A behavior $q$ of $Q$ is compatible with a constraint $\phi$ on $P$ if $Q$ can be doing $q$ while $P$ is satisfying $\phi$; we write this as $\compat{P}{Q}\phi(q)$. A behavior $q$ of $Q$ ensures $\phi$ on $P$ if whenever $Q$ does $q$, $P$ \emph{must} satisfy $\phi$; we write this as $\ensure{P}{Q}\phi(q)$.
+    A behavior $q$ of $Q$ allows a constraint $\phi$ on $P$ if $Q$ can be doing $q$ while $P$ is satisfying $\phi$; we write this as $\allows{P}{Q}\phi(q)$. A behavior $q$ of $Q$ ensures $\phi$ on $P$ if whenever $Q$ does $q$, $P$ \emph{must} satisfy $\phi$; we write this as $\ensure{P}{Q}\phi(q)$.
     
-    These symbols are chosen due to their relation to the usual modalities of possibility ($\Diamond$) and necessity ($\Box$) \cite{kripke1963semantical}; a behavior $q$ is compatible with $\phi$ if it is \emph{possible} that $P$ satisfies $\phi$ while $Q$ does $q$, and a behavior $q$ ensures $\phi$ if it is \emph{necessary} that $P$ satisfies $\phi$ while $Q$ does $q$. Indeed, in the case that the accessibility relation in the Kripke frame is an equivalence relation, we will be able to recover the usual possibility and necessity modalities from our compatiblity and ensurance operators (see \cref{subsec.modal}).
+    These symbols are chosen due to their relation to the usual modalities of possibility ($\Diamond$) and necessity ($\Box$) \cite{kripke1963semantical}; a behavior $q$ allows $\phi$ if it is \emph{possible} that $P$ satisfies $\phi$ while $Q$ does $q$, and a behavior $q$ ensures $\phi$ if it is \emph{necessary} that $P$ satisfies $\phi$ while $Q$ does $q$. Indeed, in the case that the accessibility relation in the Kripke frame is an equivalence relation, we will be able to recover the usual possibility and necessity modalities from our allowance and ensurance operators (see \cref{subsec.modal}).
     
-    Note that compatibility and determination appear as particular, pointwise cases of the compatibility and ensurance operators. For any $p:B_P$ and $q:B_Q$, we have
+    Note that compatibility and determination appear as particular, pointwise cases of the allowance and ensurance operators. For any $p:B_P$ and $q:B_Q$, we have
     \begin{align*}
-        \mathfrak{c}(p, q) &= \compat{P}{Q}(=p)(q) = \compat{Q}{P}(=q)(p) \\
+        \mathfrak{c}(p, q) &= \allows{P}{Q}(=p)(q) = \allows{Q}{P}(=q)(p) \\
         \mathfrak{d}(p, q) &= \ensure{Q}{P}(=q)(p)
     \end{align*}
     We write $(=p)$ for the map $B_P\to\Prop$ that sends $p'$ to $\true$ iff $p=p'$.
@@ -339,7 +339,7 @@ Now we turn to the question of how constraints on the behavior of some part of t
         \item In the example of the bicycle with gear ratio of $r$, we can ask what behavior of the pedal is ensured by the wheels moving slower than $w=2$ mph. We have $\ensure{\type{Pedal}}{\type{Wheel}}(\leq 2)$ is the constraint $p\leq \frac{2}{r}$.
         
         \item If the cup of water has temperature $T^0: \type{Water}_0$ at time $0$, then it cannot have a temperature further away from the ambient room temperature $R$ at a later time. Therefore, 
-        $$|R - T^t| > |R - T^0| \vdash \neg \compat{\type{Water}_0}{\type{Water}_t}(=T^0)(T^t).$$
+        $$|R - T^t| > |R - T^0| \vdash \neg \allows{\type{Water}_0}{\type{Water}_t}(=T^0)(T^t).$$
         
         \item Suppose that in the ecosystem example, one was given the goal of introducing a fox population at time $0$ in order to keep the rabbit population in check after a given deadline $d$. Let's say that being kept in check means being between two fixed bounds, $$r_t \mapsto \term{inCheck}(r_t) := k_1 < r_t < k_2$$
         so that $\term{inCheck} : B_{\type{Rabbit}_t} \to \Prop$ is a constraint on rabbits at time $t$. The constraint of being kept in check for all times after the deadline $d$ is the constraint
@@ -359,11 +359,11 @@ If there are no foxes, then the rabbit population is unbounded, and if there are
     As the internal logic of the topos $\Set$ is Boolean, in that it satisfies the law of excluded middle, our operators are inter-definable by conjugating with negation. 
     
     \begin{prop}\label{prop.deMorgan}
-    Assuming Boolean logic, compatibility and ensurance are de Morgan duals. That is, $\neg \compat{P}{Q} \neg = \ensure{P}{Q}$.
+    Assuming Boolean logic, allowance and ensurance are de Morgan duals. That is, $\neg \allows{P}{Q} \neg = \ensure{P}{Q}$.
     \end{prop}
     \begin{proof} The proof uses the law of excluded middle twice:
     \begin{align*}
-        \neg \compat{P}{Q} \neg \phi(q) &= \neg \exists p.\, \mathfrak{c}(p, q) \meet \neg \phi(p) \\
+        \neg \allows{P}{Q} \neg \phi(q) &= \neg \exists p.\, \mathfrak{c}(p, q) \meet \neg \phi(p) \\
             &= \forall p.\, \neg (\mathfrak{c}(p, q) \meet \neg \phi(p)) \\
             &= \forall p.\, \neg \mathfrak{c}(p, q) \join \neg\neg \phi(p) \\
             &= \forall p.\, \mathfrak{c}(p, q) \Rightarrow \phi(p). \qedhere
@@ -371,16 +371,16 @@ If there are no foxes, then the rabbit population is unbounded, and if there are
     \end{proof}
     Note that \cref{prop.deMorgan} does not generalize to arbitrary toposes, where the variation of the sets (in time or in space) means that one must reason constructively in general.
     
-\subsection{Compatibility and ensurance as adjoints}
-We now develop the basic theory of the compatibility and ensurance operators. First, we observe that compatibility and ensurance are monotone and adjoint to each other.   
+\subsection{Allowance and ensurance as adjoints}
+We now develop the basic theory of the allowance and ensurance operators. First, we observe that allowance and ensurance are monotone and adjoint to each other.   
     
     \begin{prop} \label{Things:prop:compatible.and.ensures} Let $P$ and $Q$ be parts of the system $S$ and $\phi$ a constraint on $P$. Then:
     \begin{enumerate}
-        \item If a constraint $\phi$ entails $\psi$, then being compatible with $\phi$ entails being compatible with $\psi$, and ensuring $\phi$ entails ensuring $\phi$. That is, $\compat{P}{Q}$ and $\ensure{P}{Q}$ are monotone.
-        \item If $q$ ensures that $P$ does $\phi$, then $q$ is compatible with $P$ doing $\phi$. That is, $\ensure{P}{Q}\phi \vdash \compat{P}{Q}\phi$.
-        \item Being compatible with $\phi$ entails $\psi$ if and only if $\phi$ entails ensuring $\psi$. That is, $\compat{P}{Q}$ is left adjoint to $\ensure{Q}{P}$.
-        \item $\compat{P}{Q}$ commutes with $\join$ and $\exists$, and $\ensure{P}{Q}$ commutes with $\meet$ and $\forall$.
-        \item A constraint is compatible with itself if and only if it is satisfied if and only if it ensures itself. In other words, $\compat{P}{P}\phi = \phi = \ensure{P}{P}\phi$.
+        \item If a constraint $\phi$ entails $\psi$, then allowing $\phi$ entails allowing $\psi$, and ensuring $\phi$ entails ensuring $\phi$. That is, $\allows{P}{Q}$ and $\ensure{P}{Q}$ are monotone.
+        \item If $q$ ensures that $P$ does $\phi$, then $q$ allows $P$ doing $\phi$. That is, $\ensure{P}{Q}\phi \vdash \allows{P}{Q}\phi$.
+        \item Allowing $\phi$ entails $\psi$ if and only if $\phi$ entails ensuring $\psi$. That is, $\allows{P}{Q}$ is left adjoint to $\ensure{Q}{P}$.
+        \item $\allows{P}{Q}$ commutes with $\join$ and $\exists$, and $\ensure{P}{Q}$ commutes with $\meet$ and $\forall$.
+        \item A constraint allows itself if and only if it is satisfied if and only if it ensures itself. In other words, $\allows{P}{P}\phi = \phi = \ensure{P}{P}\phi$.
 
     \end{enumerate}
     \end{prop}
@@ -388,39 +388,43 @@ We now develop the basic theory of the compatibility and ensurance operators. Fi
     ~
     \begin{enumerate}
         \item As the composite of monotone maps, both maps are monotone.
-        \item Let $\phi : B_P \to \Prop$ be a constraint on $P$. Suppose that $\ensure{P}{Q}\phi(q)$ for $q : Q$, that is that for all $s : B_S$, if $\rest{s}{Q} = q$, then $\phi(\rest{s}{P})$. Since $\rest{}{Q}$ is epi, there is an $s$ such that $\rest{s}{Q} = q$, and therefore $\phi(\rest{s}{P})$; so $\ensure{P}{Q}\phi(q) \vdash \compat{P}{Q}\phi(q)$.
+        \item Let $\phi : B_P \to \Prop$ be a constraint on $P$. Suppose that $\ensure{P}{Q}\phi(q)$ for $q : Q$, that is that for all $s : B_S$, if $\rest{s}{Q} = q$, then $\phi(\rest{s}{P})$. Since $\rest{}{Q}$ is epi, there is an $s$ such that $\rest{s}{Q} = q$, and therefore $\phi(\rest{s}{P})$; so $\ensure{P}{Q}\phi(q) \vdash \allows{P}{Q}\phi(q)$.
         \item This follows from the adjunctions $\exists_Q \dashv \Delta^Q$ and $\Delta^P \dashv \forall_P$ as follows:
         \begin{align*}
-            \compat{P}{Q} \phi &\vdash \psi \\ 
+            \allows{P}{Q} \phi &\vdash \psi \\ 
             \exists_Q \Delta^P \phi &\vdash \psi \\
             \Delta^P \phi &\vdash \Delta^Q \psi \\ 
             \phi &\vdash \forall_P \Delta^Q \psi \\
             \phi &\vdash \ensure{Q}{P} \psi.
         \end{align*}
         \item Follows from the general properties of adjoints.
-        \item As $\compat{P}{P}$ and $\ensure{P}{P}$ are adjoint, it suffices to show that just one is the identity. This follows from the fact that $P$ is a quotient of $S$. Suppose $\ensure{P}{P}\phi(p)$; that is, for all $s : S$, $\rest{s}{P} = p$ implies $\phi(p)$. Since $\rest{}{P}$ is epi, there is some $s$ that restricts to $p$, and therefore $\phi(p)$. \qedhere
+        \item As $\allows{P}{P}$ and $\ensure{P}{P}$ are adjoint, it suffices to show that just one is the identity. This follows from the fact that $P$ is a quotient of $S$. Suppose $\ensure{P}{P}\phi(p)$; that is, for all $s : S$, $\rest{s}{P} = p$ implies $\phi(p)$. Since $\rest{}{P}$ is epi, there is some $s$ that restricts to $p$, and therefore $\phi(p)$. \qedhere
         
     \end{enumerate}
     \end{proof}
     
- To make the adjointness of $\compat{P}{Q}$ and $\ensure{Q}{P}$ more visceral, consider the following example: by putting my left hand on the wall, I can \emph{ensure} my right hand is within ten feet of the wall. This is the same as saying that if the behavior of my right hand is \emph{compatible} with my left hand being on the wall, then my right hand is within 10 feet of the wall. That is, $L\vdash\ensure{Q}{P}R$ iff $\compat{P}{Q}L\vdash R$.
+ To make the adjointness of $\allows{P}{Q}$ and $\ensure{Q}{P}$ more visceral, consider the following example: by putting my left hand on the wall, I can \emph{ensure} my right hand is within ten feet of the wall. This is the same as saying that if the behavior of my right hand \emph{allows} my left hand being on the wall, then my right hand is within 10 feet of the wall. That is, $L\vdash\ensure{Q}{P}R$ iff $\allows{P}{Q}L\vdash R$.
     
-    The unit and counit of this adjunction are interesting as well. The unit says that whatever my left hand is doing, doing this ensures that my right hand is compatible with doing it. The counit says that my right hand being compatible with my left hand ensuring that my right hand is doing something implies that my right hand is doing that thing. For example, if my right hand is compatible with my left hand ensuring that it is within 10 feet of the wall, then my right hand must be within 10 feet of the wall.
+    The unit and counit of this adjunction are interesting as well. The unit
+    says that whatever my left hand is doing, doing this ensures that my right
+    hand allows doing it. The counit says that my right hand allowing my left hand ensuring that my right hand is doing something implies
+    that my right hand is doing that thing. For example, if my right hand allows
+    my left hand to ensure that it is within 10 feet of the wall, then my right hand must be within 10 feet of the wall.
     
 \subsection{Interactions between three parts}
-    Next we discuss how compatibility and ensurance compose, something like a triangle inequality for these inter-modalities.
+    Next we discuss how allowance and ensurance compose, something like a triangle inequality for these inter-modalities.
     \begin{prop}[Composition]
     Let $P$, $Q$, and $R$ be parts of system $S$. Then:
     \begin{enumerate}
-        \item If a behavior of $R$ is compatible with a constraint on $P$, then it is compatible with a behavior of $Q$ being compatible with that constraint. That is, $\compat{P}{R} \vdash \compat{Q}
-        {R}  \compat{P}{Q}$.
+        \item If a behavior of $R$ allows a constraint on $P$, then it allows a behavior of $Q$ allowing that constraint. That is, $\allows{P}{R} \vdash \allows{Q}
+        {R}  \allows{P}{Q}$.
         \item If a behavior of $R$ ensures that a behavior of $Q$ ensures some constraint on $P$, then that behavior of $R$ ensures that constraint on $P$. That is, $\ensure{Q}{R}\ensure{P}{Q} \vdash \ensure{R}{P}$.
     \end{enumerate}
     \end{prop}
     \begin{proof}
     This follows immediately from \cref{Thing:lem:Global.Modality.Props}, since 
     \[
-    \compat{P}{R} = \exists_R \Delta^P \vdash \exists_R \Delta^Q \exists_Q \Delta^P = \compat{Q}{R}\compat{P}{Q}
+    \allows{P}{R} = \exists_R \Delta^P \vdash \exists_R \Delta^Q \exists_Q \Delta^P = \allows{Q}{R}\allows{P}{Q}
     \]
     \[
     \ensure{Q}{R}\ensure{P}{Q} = \forall_R \Delta^Q \forall_Q \Delta^P \vdash \forall_R \Delta^P = \ensure{P}{R} \qedhere
@@ -440,43 +444,43 @@ We now develop the basic theory of the compatibility and ensurance operators. Fi
 \begin{proof}
 We prove the first two; the remaining two are dual.
 \begin{enumerate}
-    \item ($\Rightarrow$) Suppose that $\compat{P}{Q \cap R}\phi(a)$. Then there is an $s : B_S$ so that $\rest{s}{Q \cap R} = a$ and $\phi(\rest{s}{P})$. But then $\rest{s}{Q}$ and $\rest{s}{R}$ are compatible and $\rest{s}{Q \cup R} = (\rest{s}{Q},\, \rest{s}{R})$, so that $\compat{P}{Q \cup R}\phi(\rest{s}{Q},\, \rest{s}{R})$.
+    \item ($\Rightarrow$) Suppose that $\allows{P}{Q \cap R}\phi(a)$. Then there is an $s : B_S$ so that $\rest{s}{Q \cap R} = a$ and $\phi(\rest{s}{P})$. But then $\rest{s}{Q}$ and $\rest{s}{R}$ are compatible and $\rest{s}{Q \cup R} = (\rest{s}{Q},\, \rest{s}{R})$, so that $\allows{P}{Q \cup R}\phi(\rest{s}{Q},\, \rest{s}{R})$.
     
-    ($\Leftarrow$) Suppose that there are compatible $q : Q$ and $r : R$ with $\compat{P}{Q \cup R}\phi(q, r)$. Since $q$ and $r$ are compatible, $\rest{q}{Q \cap R} = \rest{r}{Q \cap R}$, so that $\compat{P}{Q \cap R}\phi(\rest{q}{Q \cap R})$.
+    ($\Leftarrow$) Suppose that there are compatible $q : Q$ and $r : R$ with $\allows{P}{Q \cup R}\phi(q, r)$. Since $q$ and $r$ are compatible, $\rest{q}{Q \cap R} = \rest{r}{Q \cap R}$, so that $\allows{P}{Q \cap R}\phi(\rest{q}{Q \cap R})$.
     \item This is mostly a matter of unpacking definitions:
         \begin{align*}
-            \compat{P}{Q \cap R}\phi(q, r) &= \exists s.\, (\rest{s}{Q \cup R} = (q, r)) \meet \phi(\rest{s}{P}) \\
+            \allows{P}{Q \cap R}\phi(q, r) &= \exists s.\, (\rest{s}{Q \cup R} = (q, r)) \meet \phi(\rest{s}{P}) \\
                 &= \exists s.\, (\rest{s}{Q} = q) \meet (\rest{s}{R} = r) \meet \phi(\rest{s}{P}) \\
                 &\vdash (\exists s.\, (\ret{s}{Q} = q) \meet \phi(\rest{s}{P})) \meet (\exists s.\, (\rest{s}{R} = r) \meet \phi(\rest{s}{P})) \\
-                &= \compat{P}{Q}\phi(q) \wedge \compat{P}{R}\phi(r). \qedhere
+                &= \allows{P}{Q}\phi(q) \wedge \allows{P}{R}\phi(r). \qedhere
         \end{align*} 
 \end{enumerate}
 \end{proof}
 
-\subsection{Compatibility and ensurance between a part and subpart}
+\subsection{Allowance and ensurance between a part and subpart}
 When $P$ determines $Q$, or equivalently $Q$ is a part of $P$ (see \cref{Things:lem:Determines.Mereology}), we have the following additional properties.
-\begin{prop}[Compatibility and ensurance of a part] \label{Things:prop:parts}
+\begin{prop}[Allowance and ensurance of a part] \label{Things:prop:parts}
 Suppose that $P \geq Q$. Then
 \begin{align*}
-    \compat{P}{Q} &= \exists^P_Q = \exists p.\, (\rest{p}{Q} = q) \meet \phi(p) \\
+    \allows{P}{Q} &= \exists^P_Q = \exists p.\, (\rest{p}{Q} = q) \meet \phi(p) \\
     \ensure{P}{Q} &= \forall^P_Q = \forall p.\, (\rest{p}{Q} = q) \Rightarrow \phi(p) \\
-    \compat{Q}{P} &= \Delta^Q_P = \ensure{Q}{P}
+    \allows{Q}{P} &= \Delta^Q_P = \ensure{Q}{P}
 \end{align*}
-Conversely, if there are parts $P$, $Q$ of $S$, such that $\compat{Q}{P} \vdash \ensure{Q}{P}$, then $P \geq Q$.
+Conversely, if there are parts $P$, $Q$ of $S$, such that $\allows{Q}{P} \vdash \ensure{Q}{P}$, then $P \geq Q$.
 \end{prop}
 \begin{proof}
-Note that as $S \twoheadrightarrow P$ is epi, $\exists^S_P\Delta^P_S = \id^P_P$. By definition, $\compat{P}{Q} = \exists_Q \Delta^P = \exists^P_Q \exists_P \Delta^P = \exists^P_Q$, and dually. Similarly, $\compat{Q}{P} = \exists_P\Delta^Q = \exists_P \Delta^P \Delta^Q_P = \Delta^Q_P$, and dually. For the converse, note that if $\compat{Q}{P} \vdash \ensure{Q}{P}$, then in particular $\compat{Q}{P}(=q)(p) \vdash \ensure{Q}{P}(=q)(p)$, or in other words $\mathfrak{c}(p, q) \vdash \mathfrak{d}(p, q)$; by  \cref{Things:lem:Determines.Mereology} this is equivalent to $P \geq Q$.
+Note that as $S \twoheadrightarrow P$ is epi, $\exists^S_P\Delta^P_S = \id^P_P$. By definition, $\allows{P}{Q} = \exists_Q \Delta^P = \exists^P_Q \exists_P \Delta^P = \exists^P_Q$, and dually. Similarly, $\allows{Q}{P} = \exists_P\Delta^Q = \exists_P \Delta^P \Delta^Q_P = \Delta^Q_P$, and dually. For the converse, note that if $\allows{Q}{P} \vdash \ensure{Q}{P}$, then in particular $\allows{Q}{P}(=q)(p) \vdash \ensure{Q}{P}(=q)(p)$, or in other words $\mathfrak{c}(p, q) \vdash \mathfrak{d}(p, q)$; by  \cref{Things:lem:Determines.Mereology} this is equivalent to $P \geq Q$.
 \end{proof}
 
-Thus compatibility and ensurance in the case of a part is simple: $q : B_Q$ is compatible with a constraint $\phi$ on $P$ if there exists $p : B_Q$ that restricts to $q$ and $\phi(p)$, and $q$ ensures $\phi$ if all $p$ that restrict to $q$ obey $\phi$. On the other hand, $p : B_Q$ is compatible with a constraint $\psi$ on $Q$ iff $p$ ensures $\psi$ iff $\rest{p}{Q}$ obeys $\psi$, and in fact this gives another characterization of the notion of part.
+Thus allowance and ensurance in the case of a part is simple: $q : B_Q$ allows a constraint $\phi$ on $P$ if there exists $p : B_Q$ that restricts to $q$ and $\phi(p)$, and $q$ ensures $\phi$ if all $p$ that restrict to $q$ obey $\phi$. On the other hand, $p : B_Q$ allows a constraint $\psi$ on $Q$ iff $p$ ensures $\psi$ iff $\rest{p}{Q}$ obeys $\psi$, and in fact this gives another characterization of the notion of part.
 
 We may make slightly more general statements as follows.
 \begin{prop}\label{Things:prop:parts.operations}
 Suppose that $P \leq P'$ and $Q' \leq Q$. Then
 \begin{enumerate}
-    \item $\compat{P'}{P} \compat{Q}{P'} = \compat{Q}{P}$.
+    \item $\allows{P'}{P} \allows{Q}{P'} = \allows{Q}{P}$.
     \item $\ensure{P'}{P} \ensure{Q}{P'} = \ensure{Q}{P}$.
-    \item $\compat{P}{Q} \Delta^{Q}_{Q'} = \compat{P}{Q'}$.
+    \item $\allows{P}{Q} \Delta^{Q}_{Q'} = \allows{P}{Q'}$.
     \item $\ensure{P}{Q} \Delta^{Q}_{Q'} = \ensure{P}{Q'}$.
 \end{enumerate}
 \end{prop}
@@ -497,27 +501,27 @@ and then, because $\term{inCheck}(r_t)$ is more explicitly $\Delta_{\bigvee_{t \
 In particular, we see that the suitability of a given initial fox population for keeping the rabbits in check may be determined by considering each time $t \geq d$ independently.
 \end{ex}
 
-\subsection{Compatibility and ensurance, possibility and necessity}\label{subsec.modal}
+\subsection{Allowance and ensurance, possibility and necessity}\label{subsec.modal}
 
 Finally, we describe the manner in which our intermodalities generalize the classical alethic modalities of possibility and necessity.
 
 Fix a part $P$. Then for any part $Q$, we obtain two modalities on $P$ by composing our intermodalities from $P$ to $Q$ with their corresponding intermodality from $Q$ to $P$. 
 \begin{prop}
-The operators $\compat{Q}{P}\compat{P}{Q}$ and $\ensure{Q}{P}\ensure{P}{Q}$ are a pair of adjoint modalities on $\Prop^{B_P}$. They are the identity modality if and only if $P \leq Q$.
+The operators $\allows{Q}{P}\allows{P}{Q}$ and $\ensure{Q}{P}\ensure{P}{Q}$ are a pair of adjoint modalities on $\Prop^{B_P}$. They are the identity modality if and only if $P \leq Q$.
 \end{prop}
 \begin{proof}
-By \cref{Things:prop:compatible.and.ensures} item 3, these two modalities are the composites of adjoint pairs of operators, and hence are adjoint themselves. Moreover, $\compat{Q}{P}\compat{P}{Q}$ is the identity if and only if $\compat{Q}{P}\compat{P}{Q} \phi \vdash \phi$ for all $\phi$, which occurs if and only if $\compat{P}{Q}\phi \vdash \ensure{P}{Q}\phi$ for all $\phi$, which occurs if and only if $P \leq Q$ (by \cref{Things:prop:parts}).
+By \cref{Things:prop:compatible.and.ensures} item 3, these two modalities are the composites of adjoint pairs of operators, and hence are adjoint themselves. Moreover, $\allows{Q}{P}\allows{P}{Q}$ is the identity if and only if $\allows{Q}{P}\allows{P}{Q} \phi \vdash \phi$ for all $\phi$, which occurs if and only if $\allows{P}{Q}\phi \vdash \ensure{P}{Q}\phi$ for all $\phi$, which occurs if and only if $P \leq Q$ (by \cref{Things:prop:parts}).
 \end{proof}
 
 These modalities describe constraints on $P$ as seen through the part $Q$. To obtain a description of possibility and necessity, assume that the terminal map $B_S\to\ast$ is epi (the system is \emph{well-supported}). We let $Q=\bot$ be the system whose behavior type $B_Q=\ast$ consists of just a single element. Then the adjoint modalities
-$$\compat{\bot}{P}\compat{P}{\bot} \dashv \ensure{\bot}{P}\ensure{P}{\bot}$$
+$$\allows{\bot}{P}\allows{P}{\bot} \dashv \ensure{\bot}{P}\ensure{P}{\bot}$$
 describe possibility and necessity on $B_P$. 
 
-For example, for any constraint $\varphi$ on $B_P$, the constraint $\compat{\bot}{P}\compat{P}{\bot}(\varphi)$ maps all elements of $B_P$ to $\true$ if there is some behavior $p$ that satisfies $\varphi$, and maps all elements to $\false$ otherwise. Thus the modality detects whether $\varphi$ is \emph{possible}: that is, whether there is some behavior that satisfies $\varphi$. 
+For example, for any constraint $\varphi$ on $B_P$, the constraint $\allows{\bot}{P}\allows{P}{\bot}(\varphi)$ maps all elements of $B_P$ to $\true$ if there is some behavior $p$ that satisfies $\varphi$, and maps all elements to $\false$ otherwise. Thus the modality detects whether $\varphi$ is \emph{possible}: that is, whether there is some behavior that satisfies $\varphi$. 
 
 On the other hand, $\ensure{\bot}{P}\ensure{P}{\bot}(\varphi)$ is the constraint that maps all elements of $B_P$ to $\true$ if all behaviors $p : B_P$ satisfy $\varphi$, and maps all elements to $\false$ otherwise; thus this modality detects whether $\varphi$ is always satisfied, and hence \emph{necessary}.
 
-More generally, the usual semantics of the ``it is possible that'' and ``it is necessary that'' modalities $\Diamond$ and $\Box$ take place in a Kripke frame $(W,A)$, where $W$ is a set, known as the set of worlds, and $A$ is a binary relation on $W$ known as the accessibility relation. The predicate then $\Diamond(\varphi)(w)$ holds if $\varphi(w')$ for \emph{some} $w'$ such that $wAw'$, and $\Box(\varphi)(w)$ holds if $\varphi(w')$ for \emph{all} $w'$ such that $wAw'$ \cite{kripke1963semantical}. If $A$ is an equivalence relation, then we may equivalently describe $A$ by an epi $W \twoheadrightarrow W/A$. In this case, we have $\Diamond=\compat{W/A}{W}\compat{W}{W/A}$ and $\Box= \ensure{W/A}{W}\ensure{W}{W/A}$ as modalities on $\Prop^W$. 
+More generally, the usual semantics of the ``it is possible that'' and ``it is necessary that'' modalities $\Diamond$ and $\Box$ take place in a Kripke frame $(W,A)$, where $W$ is a set, known as the set of worlds, and $A$ is a binary relation on $W$ known as the accessibility relation. The predicate then $\Diamond(\varphi)(w)$ holds if $\varphi(w')$ for \emph{some} $w'$ such that $wAw'$, and $\Box(\varphi)(w)$ holds if $\varphi(w')$ for \emph{all} $w'$ such that $wAw'$ \cite{kripke1963semantical}. If $A$ is an equivalence relation, then we may equivalently describe $A$ by an epi $W \twoheadrightarrow W/A$. In this case, we have $\Diamond=\allows{W/A}{W}\allows{W}{W/A}$ and $\Box= \ensure{W/A}{W}\ensure{W}{W/A}$ as modalities on $\Prop^W$. 
 
 \section{Outlook and conclusion}
 We have presented a logic that describes how constraints---restrictions on behavior---are passed from one part of a system to another. While we have presented this from a set theoretic point of view, we have taken care to use arguments that are valid in any topos (with the noted exception of \cref{prop.deMorgan}, which only holds in boolean toposes). As a consequence, our logic retains its character as a logic of constraint passing across a wide variety of semantics. One possibly valuable notion of semantics is one that captures a notion of time.
@@ -526,6 +530,10 @@ Indeed, behavior is best conceived as occurring over time, though of course the 
 
 Whether we speak of a bicycle, an ecosystem, or anything else that could be said to exist in time, it is possible to consider the set of behaviors of that thing over an interval of time, say over the ten-minute window $(0,10)$. Above we often discussed an idea which can be generalized to any system $S$ that exists in time. Namely, we can consider different parts of time as parts of $S$. Given any behavior $s$ over the 10-minute window, we can clip it to the first minute $\rest{s}{(0,1)}$; this gives a function $S(0,10)\to S(0,1)$, which is often called \emph{restriction}, though we will continue to call it clipping. Let's assume that every possible behavior at $(0,1)$ extends to some behavior over the whole interval---i.e.\ that the universe doesn't just end under certain conditions on $(0,1)$-behavior---at which point we have declared that the clipping function is surjective, and hence gives a part in the sense of section \cref{def.part}. We call it a \emph{temporal part}.
 
-What then does it mean to pass constraints between temporal parts? The idea begins to take on a control-theoretic flavor: behavioral constraints at one time window may be compatible with or ensure constraints at other time windows. A mother could say ``doing this now ensures no dessert tonight''. The child could ask ``is our position on the road now compatible with me playing with Rutherford this afternoon?'' A control system could attempt to solve the problem ``what values of parameter $P$ can I choose, 5 seconds from now, that are both compatible with current conditions and ensure that in 10 minutes we will achieve our target?''
+What then does it mean to pass constraints between temporal parts? The idea
+begins to take on a control-theoretic flavor: behavioral constraints at one time
+window may allow or ensure constraints at other time windows. A mother could say
+``doing this now ensures no dessert tonight''. The child could ask ``does our
+position on the road now allow me to play with Rutherford this afternoon?'' A control system could attempt to solve the problem ``what values of parameter $P$ can I choose, 5 seconds from now, that both allow current conditions and ensure that in 10 minutes we will achieve our target?''
 
 In any case, as mentioned in the introduction, our original goal was to understand what makes a thing a thing, e.g.\ what gives things like bricks the quality of being cohesive (not two bricks) and closed (not the left half of a brick). We believe that a good logic of constraint passing between parts is essential for that, but perhaps not sufficient. The question of what additional structures need to be added or considered in order construct a viable notion of thing, remains future work.
