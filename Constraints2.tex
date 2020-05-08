@@ -416,9 +416,9 @@ The fact that they are \emph{adjoint} means that
 
 We will write $\exists_P$, $\Delta^P$, and $\forall_P$ for $\exists^S_P$, $\Delta^P_S$ and $\forall^S_P$ respectively. As mentioned, these operations are functorial, meaning that $\exists^P_P(\phi)=\Delta^P_P(\phi)=\forall^P_P(\phi)=\phi$ and for $R \leq Q \leq P$,
 \begin{align*}
-    \exists^P_Q \exists^Q_R &= \exists^P_R, \\
-    \Delta^Q_P \Delta^R_Q &= \Delta^R_P, \\
-    \forall^P_Q \forall^Q_R &= \forall^P_R.
+    \exists^Q_R  \exists^P_Q &= \exists^P_R, \\
+    \Delta^R_Q \Delta^Q_P &= \Delta^R_P, \\
+    \forall^Q_R \forall^P_Q  &= \forall^P_R.
 \end{align*}
 
 \begin{lemma}\label{Thing:lem:Global.Modality.Props}
@@ -520,7 +520,7 @@ We now develop the basic theory of the allowance and ensurance operators. First,
     \begin{enumerate}
         \item As the composite of monotone maps, both maps are monotone.
         \item Let $\phi : B_P \to \Prop$ be a constraint on $P$. Suppose that $\ensure{P}{Q}\phi(q)$ for $q \in Q$, that is that for all $s \in B_S$, if $\rest{s}{Q} = q$, then $\phi(\rest{s}{P})$. Since $\rest{}{Q}$ is epi, there is an $s$ such that $\rest{s}{Q} = q$, and therefore $\phi(\rest{s}{P})$; so $\ensure{P}{Q}\phi(q) \vdash \allows{P}{Q}\phi(q)$.
-        \item This follows from the adjunctions $\exists_Q \dashv \Delta^Q$ and $\Delta^P \dashv \forall_P$ as follows:
+        \item This follows from the (left, right) adjoint pairs $(\exists_Q, \Delta^Q)$ and $(\Delta^P, \forall_P)$ as follows:
         \begin{align*}
             \allows{P}{Q} \phi &\vdash \psi \\ 
             \exists_Q \Delta^P \phi &\vdash \psi \\
@@ -647,7 +647,7 @@ By \cref{Things:prop:compatible.and.ensures} item 3, these two modalities are th
 These modalities describe constraints on $P$ as seen through the part $Q$. To
 obtain a description of possibility and necessity, assume that $B_S$ is inhabted
 --- that there is some behavior of the system. We let $Q=\bot$ be the system whose behavior type $B_Q=\ast$ consists of just a single element. Then the adjoint modalities
-$$\allows{\bot}{P}\allows{P}{\bot} \dashv \ensure{\bot}{P}\ensure{P}{\bot}$$
+$$\allows{\bot}{P}\allows{P}{\bot} \qquad \textrm{left adjoint to} \qquad \ensure{\bot}{P}\ensure{P}{\bot}$$
 describe possibility and necessity on $B_P$. 
 
 For example, for any constraint $\varphi$ on $B_P$, the constraint $\allows{\bot}{P}\allows{P}{\bot}(\varphi)$ maps all elements of $B_P$ to $\true$ if there is some behavior $p$ that satisfies $\varphi$, and maps all elements to $\false$ otherwise. Thus the modality detects whether $\varphi$ is \emph{possible}: that is, whether there is some behavior that satisfies $\varphi$. 
