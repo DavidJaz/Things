@@ -6,7 +6,7 @@ Many thinkers, from Heidegger to Isham and D\"{o}ring have asked ``What is a thi
 \begin{quote}
     From the range of the basic questions of metaphysics we shall here ask this one question: What is a thing? The question is quite old. What remains ever new about it is merely that it must be asked again and again.
 \end{quote}
-In this article, our way of asking about things is focused on the mereological aspect of things, i.e.\ the relationship between parts and wholes. The point of departure is that, at the very least, a part affects a whole: ``when you pull on a part, the rest comes with.'' For example, wherever my left hand is, my right hand is not too far away. A whole then, has the property that it coordinates constraints---or said another way, it enables constraints to be \emph{passed}---between parts. In this article, we present a logic for constraint passing.
+In this article, our way of asking about things is focused on the mereological aspect of things, i.e.\ the relationship between parts and wholes. The point of departure is that, at the very least, a part affects a whole: ``when you pull on a part, the rest comes with.'' For example, wherever my left hand is, my right hand is not far away. A whole then, has the property that it coordinates constraints---or said another way, it enables constraints to be \emph{passed}---between parts. In this article, we present a logic for constraint passing.
 
 Our approach has roots in categorical logic, and in particular Lawvere's
 observation that existential and universal quantification can be characterized
@@ -656,7 +656,7 @@ On the other hand, $\ensure{\bot}{P}\ensure{P}{\bot}(\varphi)$ is the constraint
 
 More generally, the usual semantics of the ``it is possible that'' and ``it is necessary that'' modalities $\Diamond$ and $\Box$ take place in a Kripke frame $(W,A)$, where $W$ is a set, known as the set of worlds, and $A$ is a binary relation on $W$ known as the accessibility relation. The predicate then $\Diamond(\varphi)(w)$ holds if $\varphi(w')$ for \emph{some} $w'$ such that $wAw'$, and $\Box(\varphi)(w)$ holds if $\varphi(w')$ for \emph{all} $w'$ such that $wAw'$ \cite{kripke1963semantical}. If $A$ is an equivalence relation, then we may equivalently describe $A$ by an epi $W \twoheadrightarrow W/A$. In this case, we have $\Diamond=\allows{W/A}{W}\allows{W}{W/A}$ and $\Box= \ensure{W/A}{W}\ensure{W}{W/A}$ as modalities on $\Prop^W$. 
 
-\section{Outlook and conclusion}
+\section{Outlook and Conclusion}
 We have presented a logic that describes how constraints---restrictions on behavior---are passed from one part of a system to another. While we have presented this from a set theoretic point of view, we have taken care to use arguments that are valid in any topos (with the noted exception of \cref{prop.deMorgan}, which only holds in boolean toposes). As a consequence, our logic retains its character as a logic of constraint passing across a wide variety of semantics. One possibly valuable notion of semantics is one that captures a notion of time.
 
 Indeed, behavior is best conceived as occurring over time, though of course the question of what time \emph{is} remains an issue. One can imagine that a system has, for any interval or ``window'' of time, a set of possible behaviors, and that each such behavior can be cropped or ``clipped'' to any smaller window of time. This is the perspective of \emph{temporal type theory} \cite{Schultz.Spivak:2017a}. While that work uses topos theory in a significant way, the main idea is easy enough.
